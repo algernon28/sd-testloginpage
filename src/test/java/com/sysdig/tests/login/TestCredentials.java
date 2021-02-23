@@ -1,21 +1,20 @@
-package login;
+package com.sysdig.tests.login;
 
-import static login.LoginConstants.FIELD_REQUIRED;
-import static login.LoginConstants.MISSING_AT_SIGN;
-import static login.LoginConstants.MISSING_DOMAIN;
+import static com.sysdig.tests.MessageConstants.FIELD_REQUIRED;
+import static com.sysdig.tests.MessageConstants.MISSING_AT_SIGN;
+import static com.sysdig.tests.MessageConstants.MISSING_DOMAIN;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Optional;
-import java.util.function.Predicate;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
+import com.sysdig.tests.BaseTest;
 
 import pages.LoginPage;
 
@@ -24,11 +23,8 @@ public class TestCredentials extends BaseTest {
 	private LoginPage login;
 	private WebElement txtUsername;
 	private WebElement txtPassword;
-	private WebElement lnkForgotPassword;
 	private WebElement btnLogin;
 	private String expectedMsg;
-	private Predicate<WebElement> checkElement = (element) -> (Boolean) ((JavascriptExecutor) driver)
-			.executeScript("return arguments[0].validity.valid;", element);
 
 	@Parameters({ "lang", "country", "browser" })
 	public TestCredentials(String lang, String country, String browser) {
@@ -36,7 +32,6 @@ public class TestCredentials extends BaseTest {
 		login = new LoginPage(config);
 		txtUsername = login.getUsername();
 		txtPassword = login.getPassword();
-		lnkForgotPassword = login.getForgotPassword();
 		btnLogin = login.getLoginButton();
 	}
 
@@ -48,12 +43,6 @@ public class TestCredentials extends BaseTest {
 		waitUntilVisible(btnLogin);
 	}
 
-	@AfterTest
-	public void close() {
-		if (driver != null) {
-			driver.close();
-		}
-	}
 	
 	@BeforeMethod
 	public void beforeMethod() {
@@ -66,7 +55,6 @@ public class TestCredentials extends BaseTest {
 		String username = "mickey.mouse@waldisney.com";
 		waitUntilVisible(txtUsername);
 		txtUsername.sendKeys(username);
-		//wait.until(ExpectedConditions.textToBePresentInElement(txtUsername, username));
 		btnLogin.click();
 		String validationMsg = txtUsername.getAttribute("validationMessage");
 		Reporter.log("Message: " + validationMsg, true);
@@ -91,7 +79,6 @@ public class TestCredentials extends BaseTest {
 		expectedMsg = String.format(bundle.getString(MISSING_AT_SIGN), username);
 		waitUntilVisible(txtUsername);
 		txtUsername.sendKeys(username);
-		//wait.until(ExpectedConditions.textToBePresentInElement(txtUsername, username));
 		btnLogin.click();
 		String validationMsg = txtUsername.getAttribute("validationMessage");
 		Reporter.log("Message: " + validationMsg, true);
@@ -105,7 +92,6 @@ public class TestCredentials extends BaseTest {
 		expectedMsg = String.format(bundle.getString(MISSING_DOMAIN), username);
 		waitUntilVisible(txtUsername);
 		txtUsername.sendKeys(username);
-		//wait.until(ExpectedConditions.textToBePresentInElement(txtUsername, username));
 		btnLogin.click();
 		String validationMsg = txtUsername.getAttribute("validationMessage");
 		Reporter.log("Message: " + validationMsg, true);
@@ -137,4 +123,5 @@ public class TestCredentials extends BaseTest {
 		Reporter.log("Message: " + validationMsg, true);
 		assertThat(error.isDisplayed()).as("Error message should be displayed").isTrue();
 	}
+	
 }

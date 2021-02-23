@@ -6,16 +6,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
 
 import config.Config;
 
 public class LoginPage {
-	public static final String URL = "https://app.sysdigcloud.com/";
+	public static final String DEFAULT_URL = "https://app.sysdigcloud.com/";
 
 	private Config config;
 
-	private enum REGION {
+	public enum REGION {
 		EU_CENTRAL("0"), WS_EAST("1"), WS_WEST("2");
 
 		public final String label;
@@ -53,12 +52,19 @@ public class LoginPage {
 
 	@FindBy(xpath = "//*[(contains(text(), 'Forgot your password?') or contains(., 'Forgot your password?'))]")
 	private WebElement forgotPassword;
-	
+
 	@FindBy(css = ".login__error-display")
 	private WebElement loginErrorDisplay;
 
-	public static final String getUrl() {
-		return URL;
+	@FindBy(css = ".reactsel__value-container")
+	private WebElement regionSelector;
+
+	public final WebElement getRegionSelector() {
+		return this.regionSelector;
+	}
+
+	public final String getUrl() {
+		return this.getConfig().getWebDriver().getCurrentUrl();
 	}
 
 	public final WebElement getLoginErrorDisplay() {
@@ -103,19 +109,19 @@ public class LoginPage {
 
 	public WebElement selectRegion(REGION region) {
 		String id = MessageFormat.format("react-select-2-option-{0}", region.label);
-		Select sel = new Select(config.getWebDriver().findElement(By.id(id)));
-		sel.selectByIndex(Integer.parseInt(region.label));
-		return sel.getWrappedElement();
-		
+		regionSelector.click();
+		WebElement sel = this.config.getWebDriver().findElement(By.id(id));
+		return sel;
+
 	}
-	
+
 	public void clearFields() {
 		this.username.clear();
 		this.password.clear();
 	}
-	
+
 	public void navigate() {
-		this.config.getWebDriver().navigate().to(URL);
+		this.config.getWebDriver().navigate().to(DEFAULT_URL);
 	}
 
 }

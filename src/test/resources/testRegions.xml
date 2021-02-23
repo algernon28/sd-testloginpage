@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Test-method Suite" parallel="tests" thread-count="2">
+	<test name="Test-IT-CHROME">
+		<parameter name="lang" value="it" />
+		<parameter name="country" value="IT" />
+		<parameter name="browser" value="Chrome" />
+		<classes>
+			<class name="com.sysdig.tests.login.TestRegions" />
+		</classes>
+	</test>
+	<test name="Test-EN-CHROME">
+		<parameter name="lang" value="en" />
+		<parameter name="country" value="GB" />
+		<parameter name="browser" value="Chrome" />
+		<classes>
+			<class name="com.sysdig.tests.login.TestRegions" />
+		</classes>
+	</test>
+</suite>

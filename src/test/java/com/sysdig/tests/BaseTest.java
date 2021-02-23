@@ -1,16 +1,19 @@
-package login;
+package com.sysdig.tests;
 
 import java.time.Duration;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 
 import config.Config;
@@ -23,6 +26,8 @@ public abstract class BaseTest {
 	protected Wait<WebDriver> wait;
 	protected Locale locale;
 	protected ResourceBundle bundle;
+	protected Predicate<WebElement> checkElement = (element) -> (Boolean) ((JavascriptExecutor) driver)
+			.executeScript("return arguments[0].validity.valid;", element);
 
 	protected BaseTest(Optional<String> lang, Optional<String> country, String browser) {
 		locale = new Locale.Builder().setLanguage(lang.orElse("en")).setRegion(country.orElse("")).build();
@@ -44,6 +49,14 @@ public abstract class BaseTest {
 
 	}
 
+
+	@AfterTest
+	public void close() {
+		if (driver != null) {
+			driver.close();
+		}
+	}
+	
 	@BeforeSuite
 	protected void startUp() {
 	}
