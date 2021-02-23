@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="12" passed="12" failed="0" skipped="0">
+  <reporter-output>
+    <line>
+      <![CDATA[Message: ]]>
+    </line>
+    <line>
+      <![CDATA[Message: ]]>
+    </line>
+    <line>
+      <![CDATA[Message: Compila questo campo.]]>
+    </line>
+    <line>
+      <![CDATA[Message: Please fill in this field.]]>
+    </line>
+    <line>
+      <![CDATA[Message: Please fill in this field.]]>
+    </line>
+    <line>
+      <![CDATA[Message: Compila questo campo.]]>
+    </line>
+    <line>
+      <![CDATA[Message: Inserisci una parte dopo "@". Il valore "mickey.mouse@" è incompleto.]]>
+    </line>
+    <line>
+      <![CDATA[Message: Please enter a part following '@'. 'mickey.mouse@' is incomplete.]]>
+    </line>
+    <line>
+      <![CDATA[Message: Aggiungi un simbolo "@" nell'indirizzo email. In "mickey.mouse" manca un simbolo "@".]]>
+    </line>
+    <line>
+      <![CDATA[Message: Please include an '@' in the email address. 'mickey.mouse' is missing an '@'.]]>
+    </line>
+    <line>
+      <![CDATA[Message: Credentials are not valid]]>
+    </line>
+    <line>
+      <![CDATA[Message: Credentials are not valid]]>
+    </line>
+  </reporter-output>
+  <suite started-at="2021-02-23T15:41:51 CET" name="Test-method Suite" finished-at="2021-02-23T15:42:09 CET" duration-ms="17767">
+    <groups>
+    </groups>
+    <test started-at="2021-02-23T15:41:51 CET" name="Test-IT-CHROME" finished-at="2021-02-23T15:42:09 CET" duration-ms="17745">
+      <class name="login.TestCredentials">
+        <test-method is-config="true" signature="beforeTest()[pri:0, instance:login.TestCredentials@5bbbdd4b]" started-at="2021-02-23T15:41:51 CET" name="beforeTest" finished-at="2021-02-23T15:41:59 CET" duration-ms="7709" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:login.TestCredentials@5bbbdd4b]" started-at="2021-02-23T15:41:59 CET" name="beforeMethod" finished-at="2021-02-23T15:41:59 CET" duration-ms="198" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="testCorrectUsername()[pri:0, instance:login.TestCredentials@5bbbdd4b]" started-at="2021-02-23T15:41:59 CET" name="testCorrectUsername" finished-at="2021-02-23T15:42:00 CET" duration-ms="835" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[Message: ]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- testCorrectUsername -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:login.TestCredentials@5bbbdd4b]" started-at="2021-02-23T15:42:00 CET" name="beforeMethod" finished-at="2021-02-23T15:42:01 CET" duration-ms="343" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="testEmptyPassword()[pri:0, instance:login.TestCredentials@5bbbdd4b]" started-at="2021-02-23T15:42:01 CET" name="testEmptyPassword" finished-at="2021-02-23T15:42:01 CET" duration-ms="375" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[Message: Compila questo campo.]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- testEmptyPassword -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:login.TestCredentials@5bbbdd4b]" started-at="2021-02-23T15:42:01 CET" name="beforeMethod" finished-at="2021-02-23T15:42:01 CET" duration-ms="189" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="testEmptyUsername()[pri:0, instance:login.TestCredentials@5bbbdd4b]" started-at="2021-02-23T15:42:01 CET" name="testEmptyUsername" finished-at="2021-02-23T15:42:01 CET" duration-ms="240" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[Message: Compila questo campo.]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- testEmptyUsername -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:login.TestCredentials@5bbbdd4b]" started-at="2021-02-23T15:42:01 CET" name="beforeMethod" finished-at="2021-02-23T15:42:02 CET" duration-ms="164" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="testUsernameWithMissingDomain()[pri:0, instance:login.TestCredentials@5bbbdd4b]" started-at="2021-02-23T15:42:02 CET" name="testUsernameWithMissingDomain" finished-at="2021-02-23T15:42:02 CET" duration-ms="571" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[Message: Inserisci una parte dopo "@". Il valore "mickey.mouse@" è incompleto.]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- testUsernameWithMissingDomain -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:login.TestCredentials@5bbbdd4b]" started-at="2021-02-23T15:42:02 CET" name="beforeMethod" finished-at="2021-02-23T15:42:02 CET" duration-ms="313" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="testUsernameWithout_At()[pri:0, instance:login.TestCredentials@5bbbdd4b]" started-at="2021-02-23T15:42:02 CET" name="testUsernameWithout_At" finished-at="2021-02-23T15:42:03 CET" duration-ms="619" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[Message: Aggiungi un simbolo "@" nell'indirizzo email. In "mickey.mouse" manca un simbolo "@".]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- testUsernameWithout_At -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:login.TestCredentials@5bbbdd4b]" started-at="2021-02-23T15:42:03 CET" name="beforeMethod" finished-at="2021-02-23T15:42:03 CET" duration-ms="261" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="testWrongLogin()[pri:0, instance:login.TestCredentials@5bbbdd4b]" started-at="2021-02-23T15:42:03 CET" name="testWrongLogin" finished-at="2021-02-23T15:42:09 CET" duration-ms="5756" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[Message: Credentials are not valid]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- testWrongLogin -->
+        <test-method is-config="true" signature="close()[pri:0, instance:login.TestCredentials@5bbbdd4b]" started-at="2021-02-23T15:42:09 CET" name="close" finished-at="2021-02-23T15:42:09 CET" duration-ms="132" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- login.TestCredentials -->
+    </test> <!-- Test-IT-CHROME -->
+    <test started-at="2021-02-23T15:41:51 CET" name="Test-EN-CHROME" finished-at="2021-02-23T15:42:09 CET" duration-ms="17767">
+      <class name="login.TestCredentials">
+        <test-method is-config="true" signature="startUp()[pri:0, instance:login.TestCredentials@3c4bc9fc]" started-at="2021-02-23T15:41:51 CET" name="startUp" finished-at="2021-02-23T15:41:51 CET" duration-ms="5" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startUp -->
+        <test-method is-config="true" signature="beforeTest()[pri:0, instance:login.TestCredentials@3c4bc9fc]" started-at="2021-02-23T15:41:51 CET" name="beforeTest" finished-at="2021-02-23T15:41:59 CET" duration-ms="7722" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:login.TestCredentials@3c4bc9fc]" started-at="2021-02-23T15:41:59 CET" name="beforeMethod" finished-at="2021-02-23T15:41:59 CET" duration-ms="202" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="testCorrectUsername()[pri:0, instance:login.TestCredentials@3c4bc9fc]" started-at="2021-02-23T15:41:59 CET" name="testCorrectUsername" finished-at="2021-02-23T15:42:00 CET" duration-ms="831" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[Message: ]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- testCorrectUsername -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:login.TestCredentials@3c4bc9fc]" started-at="2021-02-23T15:42:00 CET" name="beforeMethod" finished-at="2021-02-23T15:42:01 CET" duration-ms="342" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="testEmptyPassword()[pri:0, instance:login.TestCredentials@3c4bc9fc]" started-at="2021-02-23T15:42:01 CET" name="testEmptyPassword" finished-at="2021-02-23T15:42:01 CET" duration-ms="373" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[Message: Please fill in this field.]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- testEmptyPassword -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:login.TestCredentials@3c4bc9fc]" started-at="2021-02-23T15:42:01 CET" name="beforeMethod" finished-at="2021-02-23T15:42:01 CET" duration-ms="191" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="testEmptyUsername()[pri:0, instance:login.TestCredentials@3c4bc9fc]" started-at="2021-02-23T15:42:01 CET" name="testEmptyUsername" finished-at="2021-02-23T15:42:01 CET" duration-ms="240" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[Message: Please fill in this field.]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- testEmptyUsername -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:login.TestCredentials@3c4bc9fc]" started-at="2021-02-23T15:42:01 CET" name="beforeMethod" finished-at="2021-02-23T15:42:02 CET" duration-ms="164" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="testUsernameWithMissingDomain()[pri:0, instance:login.TestCredentials@3c4bc9fc]" started-at="2021-02-23T15:42:02 CET" name="testUsernameWithMissingDomain" finished-at="2021-02-23T15:42:02 CET" duration-ms="571" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[Message: Please enter a part following '@'. 'mickey.mouse@' is incomplete.]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- testUsernameWithMissingDomain -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:login.TestCredentials@3c4bc9fc]" started-at="2021-02-23T15:42:02 CET" name="beforeMethod" finished-at="2021-02-23T15:42:02 CET" duration-ms="309" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="testUsernameWithout_At()[pri:0, instance:login.TestCredentials@3c4bc9fc]" started-at="2021-02-23T15:42:02 CET" name="testUsernameWithout_At" finished-at="2021-02-23T15:42:03 CET" duration-ms="621" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[Message: Please include an '@' in the email address. 'mickey.mouse' is missing an '@'.]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- testUsernameWithout_At -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:login.TestCredentials@3c4bc9fc]" started-at="2021-02-23T15:42:03 CET" name="beforeMethod" finished-at="2021-02-23T15:42:03 CET" duration-ms="262" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="testWrongLogin()[pri:0, instance:login.TestCredentials@3c4bc9fc]" started-at="2021-02-23T15:42:03 CET" name="testWrongLogin" finished-at="2021-02-23T15:42:09 CET" duration-ms="5756" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[Message: Credentials are not valid]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- testWrongLogin -->
+        <test-method is-config="true" signature="close()[pri:0, instance:login.TestCredentials@3c4bc9fc]" started-at="2021-02-23T15:42:09 CET" name="close" finished-at="2021-02-23T15:42:09 CET" duration-ms="155" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- login.TestCredentials -->
+    </test> <!-- Test-EN-CHROME -->
+  </suite> <!-- Test-method Suite -->
+</testng-results>

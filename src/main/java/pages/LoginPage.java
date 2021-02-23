@@ -30,7 +30,7 @@ public class LoginPage {
 		PageFactory.initElements(config.getWebDriver(), this);
 	}
 
-	@FindBy(css = "login__logo")
+	@FindBy(css = ".login__logo")
 	private WebElement logo;
 
 	@FindBy(xpath = "//*[contains(@href, '#/samlAuthentication')]")
@@ -48,11 +48,22 @@ public class LoginPage {
 	@FindBy(xpath = "//*[@name = 'password' and @type = 'password']")
 	private WebElement password;
 
-	@FindBy(xpath = "//*[@type = 'submit']")
+	@FindBy(xpath = "//*[@type='submit']")
 	private WebElement loginButton;
 
 	@FindBy(xpath = "//*[(contains(text(), 'Forgot your password?') or contains(., 'Forgot your password?'))]")
 	private WebElement forgotPassword;
+	
+	@FindBy(css = ".login__error-display")
+	private WebElement loginErrorDisplay;
+
+	public static final String getUrl() {
+		return URL;
+	}
+
+	public final WebElement getLoginErrorDisplay() {
+		return this.loginErrorDisplay;
+	}
 
 	public final WebElement getForgotPassword() {
 		return this.forgotPassword;
@@ -90,7 +101,7 @@ public class LoginPage {
 		return this.password;
 	}
 
-	public WebElement getRegion(REGION region) {
+	public WebElement selectRegion(REGION region) {
 		String id = MessageFormat.format("react-select-2-option-{0}", region.label);
 		Select sel = new Select(config.getWebDriver().findElement(By.id(id)));
 		sel.selectByIndex(Integer.parseInt(region.label));
