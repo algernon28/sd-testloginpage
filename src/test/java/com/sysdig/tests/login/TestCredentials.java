@@ -1,9 +1,9 @@
 package com.sysdig.tests.login;
 
-import static com.sysdig.tests.MessageConstants.FIELD_REQUIRED;
-import static com.sysdig.tests.MessageConstants.MISSING_AT_SIGN;
-import static com.sysdig.tests.MessageConstants.MISSING_DOMAIN;
 import static org.assertj.core.api.Assertions.assertThat;
+import static pages.LoginConstants.FIELD_REQUIRED;
+import static pages.LoginConstants.MISSING_AT_SIGN;
+import static pages.LoginConstants.MISSING_DOMAIN;
 
 import java.util.Optional;
 
@@ -20,7 +20,7 @@ import pages.LoginPage;
 
 public class TestCredentials extends BaseTest {
 
-	private LoginPage login;
+	private LoginPage loginPage;
 	private WebElement txtUsername;
 	private WebElement txtPassword;
 	private WebElement btnLogin;
@@ -29,16 +29,16 @@ public class TestCredentials extends BaseTest {
 	@Parameters({ "lang", "country", "browser" })
 	public TestCredentials(String lang, String country, String browser) {
 		super(Optional.ofNullable(lang), Optional.ofNullable(country), browser);
-		login = new LoginPage(config);
-		txtUsername = login.getUsername();
-		txtPassword = login.getPassword();
-		btnLogin = login.getLoginButton();
+		loginPage = new LoginPage(config);
+		txtUsername = loginPage.getUsername();
+		txtPassword = loginPage.getPassword();
+		btnLogin = loginPage.getLoginButton();
 	}
 
 	@BeforeTest
 	public void beforeTest() {
-		login.navigate();
-		WebElement logo = login.getLogo();
+		loginPage.navigate();
+		WebElement logo = loginPage.getLogo();
 		waitUntilVisible(logo);
 		waitUntilVisible(btnLogin);
 	}
@@ -46,7 +46,7 @@ public class TestCredentials extends BaseTest {
 	
 	@BeforeMethod
 	public void beforeMethod() {
-		login.clearFields();
+		loginPage.clearFields();
 	}
 
 	@Test
@@ -117,7 +117,7 @@ public class TestCredentials extends BaseTest {
 		txtUsername.sendKeys(username);
 		txtPassword.sendKeys(pwd);
 		btnLogin.click();
-		WebElement error = login.getLoginErrorDisplay();
+		WebElement error = loginPage.getLoginErrorDisplay();
 		waitUntilVisible(error);
 		String validationMsg = error.getText();
 		Reporter.log("Message: " + validationMsg, true);

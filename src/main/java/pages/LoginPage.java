@@ -1,82 +1,70 @@
 package pages;
 
+import static pages.LoginConstants.DEFAULT_REGION;
+
 import java.text.MessageFormat;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 import config.Config;
+import pages.LoginConstants.REGION;
 
-public class LoginPage {
-	public static final String DEFAULT_URL = "https://app.sysdigcloud.com/";
-
-	private Config config;
-
-	public enum REGION {
-		EU_CENTRAL("0"), WS_EAST("1"), WS_WEST("2");
-
-		public final String label;
-
-		private REGION(String label) {
-			this.label = label;
-		}
-	}
-
+public class LoginPage extends BasePage{
+	public static final String PATH = "/#/login";
 	public LoginPage(Config config) {
-		this.config = config;
-		PageFactory.initElements(config.getWebDriver(), this);
+		super(config);
 	}
 
 	@FindBy(css = ".login__logo")
-	private WebElement logo;
+	private WebElement imgLogo;
 
 	@FindBy(xpath = "//*[contains(@href, '#/samlAuthentication')]")
-	private WebElement google;
+	private WebElement lnkGoogle;
 
 	@FindBy(xpath = "//*[contains(@href, '#/samlAuthentication')]")
-	private WebElement saml;
+	private WebElement lnkSaml;
 
 	@FindBy(xpath = "//*[contains(@href, '#/openIdAuthentication')]")
-	private WebElement openid;
+	private WebElement lnkOpenid;
 
-	@FindBy(xpath = "//*[@name = 'username' and @type = 'email']")
-	private WebElement username;
+	@FindBy(xpath = "//*[@name = 'txtUsername' and @type = 'email']")
+	private WebElement txtUsername;
 
-	@FindBy(xpath = "//*[@name = 'password' and @type = 'password']")
-	private WebElement password;
+	@FindBy(xpath = "//*[@name = 'txtPassword' and @type = 'txtPassword']")
+	private WebElement txtPassword;
 
 	@FindBy(xpath = "//*[@type='submit']")
-	private WebElement loginButton;
+	private WebElement btnLogin;
 
-	@FindBy(xpath = "//*[(contains(text(), 'Forgot your password?') or contains(., 'Forgot your password?'))]")
-	private WebElement forgotPassword;
+	@FindBy(css = "*[data-test='link-forgot-password']")
+	private WebElement lnkForgotPassword;
 
 	@FindBy(css = ".login__error-display")
-	private WebElement loginErrorDisplay;
+	private WebElement msgLoginErrorDisplay;
 
 	@FindBy(css = ".reactsel__value-container")
-	private WebElement regionSelector;
+	private WebElement cboRegionSelector;
 
 	public final WebElement getRegionSelector() {
-		return this.regionSelector;
+		return this.cboRegionSelector;
 	}
 
 	public final String getUrl() {
-		return this.getConfig().getWebDriver().getCurrentUrl();
+		return driver.getCurrentUrl();
 	}
 
 	public final WebElement getLoginErrorDisplay() {
-		return this.loginErrorDisplay;
+		return this.msgLoginErrorDisplay;
 	}
 
 	public final WebElement getForgotPassword() {
-		return this.forgotPassword;
+		return this.lnkForgotPassword;
 	}
 
 	public final WebElement getLoginButton() {
-		return this.loginButton;
+		return this.btnLogin;
 	}
 
 	public final Config getConfig() {
@@ -84,44 +72,58 @@ public class LoginPage {
 	}
 
 	public final WebElement getLogo() {
-		return this.logo;
+		return this.imgLogo;
 	}
 
 	public final WebElement getGoogle() {
-		return this.google;
+		return this.lnkGoogle;
 	}
 
 	public final WebElement getSaml() {
-		return this.saml;
+		return this.lnkSaml;
 	}
 
 	public final WebElement getOpenid() {
-		return this.openid;
+		return this.lnkOpenid;
 	}
 
 	public final WebElement getUsername() {
-		return this.username;
+		return this.txtUsername;
 	}
 
 	public final WebElement getPassword() {
-		return this.password;
+		return this.txtPassword;
 	}
 
 	public WebElement selectRegion(REGION region) {
 		String id = MessageFormat.format("react-select-2-option-{0}", region.label);
-		regionSelector.click();
-		WebElement sel = this.config.getWebDriver().findElement(By.id(id));
+		cboRegionSelector.click();
+		WebElement sel = driver.findElement(By.id(id));
 		return sel;
 
 	}
+	
+	public void typeUsername(String username) {
+		txtUsername.clear();
+		txtUsername.sendKeys(username);
+	}
+	
+	public void typePassword(String password) {
+		txtPassword.clear();
+		txtPassword.sendKeys(password);
+	}
 
 	public void clearFields() {
-		this.username.clear();
-		this.password.clear();
+		this.txtUsername.clear();
+		this.txtPassword.clear();
 	}
 
+	@Override
 	public void navigate() {
-		this.config.getWebDriver().navigate().to(DEFAULT_URL);
+		navigateTo(DEFAULT_REGION, PATH);
 	}
 
+	public void navigate(REGION region) {
+		navigateTo(region, PATH);
+	}
 }

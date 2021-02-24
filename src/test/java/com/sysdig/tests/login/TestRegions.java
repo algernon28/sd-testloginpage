@@ -1,6 +1,10 @@
 package com.sysdig.tests.login;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static pages.LoginConstants.regionDomain;
+import static pages.LoginConstants.REGION.EU;
+import static pages.LoginConstants.REGION.WS_EAST;
+import static pages.LoginConstants.REGION.WS_WEST;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -15,58 +19,54 @@ import org.testng.annotations.Test;
 import com.sysdig.tests.BaseTest;
 
 import pages.LoginPage;
-import pages.LoginPage.REGION;
 
 public class TestRegions extends BaseTest {
-	private static final String EU_URL = "eu1.app.sysdig.com";
-	private static final String WS_EAST_URL = "app.sysdigcloud.com";
-	private static final String WS_WEST_URL = "us2.app.sysdig.com";
-	private LoginPage login;
+	private LoginPage loginPage;
 	
 
 	@Parameters({ "lang", "country", "browser" })
 	public TestRegions(String lang, String country, String browser) {
 		super(Optional.ofNullable(lang), Optional.ofNullable(country), browser);
-		login = new LoginPage(config);
+		loginPage = new LoginPage(config);
 	}
 
 	@BeforeTest
 	public void beforeTest() {
-		login.navigate();
-		WebElement logo = login.getLogo();
+		loginPage.navigate();
+		WebElement logo = loginPage.getLogo();
 		waitUntilVisible(logo);
 	}
 
 	@Test
 	public void testRegionEU() throws MalformedURLException {
-		WebElement el = login.selectRegion(REGION.EU_CENTRAL);
+		WebElement el = loginPage.selectRegion(EU);
 		Reporter.log("SELECTOR: " + el.getText(), true);
 		el.click();
-		waitUntilVisible(login.getLogo());
+		waitUntilVisible(loginPage.getLogo());
 		URL newURL = new URL(driver.getCurrentUrl());
 		Reporter.log("URL: " + driver.getCurrentUrl(), true);
-		assertThat(newURL.getHost()).isEqualTo(EU_URL);
+		assertThat(newURL.getHost()).isEqualTo(regionDomain(EU));
 	}
 
 	@Test
 	public void testRegionWS_EAST() throws MalformedURLException {
-		WebElement el = login.selectRegion(REGION.WS_EAST);
+		WebElement el = loginPage.selectRegion(WS_EAST);
 		Reporter.log("SELECTOR: " + el.getText(), true);
 		el.click();
-		waitUntilVisible(login.getLogo());
+		waitUntilVisible(loginPage.getLogo());
 		URL newURL = new URL(driver.getCurrentUrl());
 		Reporter.log("URL: " + driver.getCurrentUrl(), true);
-		assertThat(newURL.getHost()).isEqualTo(WS_EAST_URL);
+		assertThat(newURL.getHost()).isEqualTo(regionDomain(WS_EAST));
 	}
 
 	@Test
 	public void testRegionWS_WEST() throws MalformedURLException {
-		WebElement el = login.selectRegion(REGION.WS_WEST);
+		WebElement el = loginPage.selectRegion(WS_WEST);
 		Reporter.log("SELECTOR: " + el.getText(), true);
 		el.click();
-		waitUntilVisible(login.getLogo());
+		waitUntilVisible(loginPage.getLogo());
 		URL newURL = new URL(driver.getCurrentUrl());
 		Reporter.log("URL: " + driver.getCurrentUrl(), true);
-		assertThat(newURL.getHost()).isEqualTo(WS_WEST_URL);
+		assertThat(newURL.getHost()).isEqualTo(regionDomain(WS_WEST));
 	}
 }

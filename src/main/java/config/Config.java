@@ -1,6 +1,7 @@
 package config;
 
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.WebDriver;
@@ -34,6 +35,7 @@ public class Config {
 				driver = (WebDriver) Class.forName(type.browserClass()).getConstructor().newInstance();
 				wdm = WebDriverManager.getInstance(type);
 			}
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
