@@ -13,7 +13,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 
 import config.Config;
 import io.github.bonigarcia.wdm.config.Architecture;
@@ -25,35 +27,50 @@ public abstract class BaseTest {
 	protected Wait<WebDriver> wait;
 	protected Locale locale;
 	protected ResourceBundle bundle;
+	private String countryName;
+	private String browserType;
+	private String browserLanguage;
+	
 	protected Predicate<WebElement> checkElement = (element) -> (Boolean) ((JavascriptExecutor) driver)
 			.executeScript("return arguments[0].validity.valid;", element);
 
 	protected BaseTest(Optional<String> lang, Optional<String> country, String browser) {
-		loadBundle(browser, lang, country);
-		String browserLanguage = getBrowserLanguage(lang, country, browser);
-		config = new Config(DriverManagerType.valueOf(browser.toUpperCase()), Architecture.X64, browserLanguage);
+		this.countryName = country.orElse("").toUpperCase();
+		this.browserType = browser;
+		this.bundle = loadBundle(browser, lang, country);
+		this.browserLanguage = getBrowserLanguage(browser);
+		
+	}
+
+	private ResourceBundle loadBundle(String baseName, Optional<String> lang, Optional<String> country) {
+		Locale.setDefault(new Locale("en"));
+		locale = new Locale.Builder().setLanguage(lang.orElse("en")).setRegion(countryName).build();
+		return ResourceBundle.getBundle("messages", locale);
+	}
+	
+	private String getBrowserLanguage(String browser) {
+		if (!locale.getCountry().isEmpty()) {
+			return locale.toString().replace("_", "-");
+		} 
+		return locale.getLanguage();
+	}
+
+	@BeforeClass
+	protected void loadConfiguration() {
+		config = new Config(DriverManagerType.valueOf(browserType.toUpperCase()), Architecture.X64, browserLanguage);
 		driver = config.getWebDriver();
 		wait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(30)).pollingEvery(Duration.ofSeconds(5))
 				.ignoring(NoSuchElementException.class);
 	}
-
-	private void loadBundle(String baseName, Optional<String> lang, Optional<String> country) {
-		Locale.setDefault(new Locale("en"));
-		locale = new Locale.Builder().setLanguage(lang.orElse("en")).setRegion(country.orElse("")).build();
-		bundle = ResourceBundle.getBundle("messages", locale);
+	
+	@AfterTest
+	public void shutDown() {
+		if (driver != null) {
+			driver.quit();
+		}
 	}
 	
-	private String getBrowserLanguage(Optional<String> lang, Optional<String> country, String browser) {
-		StringBuilder sb = new StringBuilder();
-		sb.append(lang.orElse("en").toLowerCase());
-		if (country.isPresent()) {
-			sb.append("-").append(country.get().toUpperCase());
-		}
-		return sb.toString();
-	}
-
-
-	@AfterTest
+	@AfterClass
 	public void close() {
 		if (driver != null) {
 			driver.close();

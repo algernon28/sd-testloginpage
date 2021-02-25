@@ -2,6 +2,8 @@ package pages;
 
 import static pages.LoginConstants.DEFAULT_REGION;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.MessageFormat;
 
 import org.openqa.selenium.By;
@@ -9,10 +11,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import config.Config;
+import pages.LoginConstants.AUTH;
 import pages.LoginConstants.REGION;
-
 public class LoginPage extends BasePage{
 	public static final String PATH = "/#/login";
+	public static final String PATH_FREETRIAL = "/company/free-trial";
+	public static final String FREETRIAL_HOST = "sysdig.com";
 	public LoginPage(Config config) {
 		super(config);
 	}
@@ -20,7 +24,7 @@ public class LoginPage extends BasePage{
 	@FindBy(css = ".login__logo")
 	private WebElement imgLogo;
 
-	@FindBy(xpath = "//*[contains(@href, '#/samlAuthentication')]")
+	@FindBy(css = ".block-login__third-party-button--google-logo")
 	private WebElement lnkGoogle;
 
 	@FindBy(xpath = "//*[contains(@href, '#/samlAuthentication')]")
@@ -29,10 +33,10 @@ public class LoginPage extends BasePage{
 	@FindBy(xpath = "//*[contains(@href, '#/openIdAuthentication')]")
 	private WebElement lnkOpenid;
 
-	@FindBy(xpath = "//*[@name = 'txtUsername' and @type = 'email']")
+	@FindBy(css = "*[data-test='login-username']")
 	private WebElement txtUsername;
 
-	@FindBy(xpath = "//*[@name = 'txtPassword' and @type = 'txtPassword']")
+	@FindBy(css = "*[data-test='login-password']")
 	private WebElement txtPassword;
 
 	@FindBy(xpath = "//*[@type='submit']")
@@ -46,6 +50,9 @@ public class LoginPage extends BasePage{
 
 	@FindBy(css = ".reactsel__value-container")
 	private WebElement cboRegionSelector;
+	
+	@FindBy(xpath = "//*[contains(@href, 'sysdig.com/sign-up')]")
+	private WebElement lnkFreeTrial;
 
 	public final WebElement getRegionSelector() {
 		return this.cboRegionSelector;
@@ -98,8 +105,7 @@ public class LoginPage extends BasePage{
 	public WebElement selectRegion(REGION region) {
 		String id = MessageFormat.format("react-select-2-option-{0}", region.label);
 		cboRegionSelector.click();
-		WebElement sel = driver.findElement(By.id(id));
-		return sel;
+		return driver.findElement(By.id(id));
 
 	}
 	
@@ -112,10 +118,37 @@ public class LoginPage extends BasePage{
 		txtPassword.clear();
 		txtPassword.sendKeys(password);
 	}
+	
+	public void submit() {
+		btnLogin.click();
+	}
+	
+	public URL authenticate(AUTH authProvider) throws MalformedURLException {
+		switch(authProvider) {
+		case GOOGLE:
+			lnkGoogle.click();
+			break;
+		case OPENID:
+			lnkOpenid.click();
+			break;
+		case SAML:
+			lnkSaml.click();
+			break;
+		default:
+			//do nothing
+			break;
+		}
+		return new URL(driver.getCurrentUrl());
+	}
 
 	public void clearFields() {
 		this.txtUsername.clear();
 		this.txtPassword.clear();
+	}
+	
+	public URL signupForFreeTrial() throws MalformedURLException {
+		lnkFreeTrial.click();
+		return new URL(driver.getCurrentUrl());
 	}
 
 	@Override

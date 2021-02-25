@@ -10,6 +10,7 @@ import java.util.Optional;
 
 import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -29,11 +30,16 @@ public class TestRetrievePassword extends BaseTest {
 	@Parameters({ "lang", "country", "browser" })
 	public TestRetrievePassword(String lang, String country, String browser) {
 		super(Optional.ofNullable(lang), Optional.ofNullable(country), browser);
+	}
+
+	@BeforeClass
+	public void beforeClass() {
 		retrievePasswordPage = new RetrievePasswordPage(config);
 		loginPage = new LoginPage(config);
 		btnSubmit = retrievePasswordPage.getBtnSubmit();
 		lnkBackToLogin = retrievePasswordPage.getLnkBackToLogin();
 		lnkForgotPassword = loginPage.getForgotPassword();
+
 	}
 
 	@Test
@@ -67,7 +73,7 @@ public class TestRetrievePassword extends BaseTest {
 
 	@Test
 	public void testBackToLoginLinkEU() throws MalformedURLException {
-		REGION region = REGION.EU;		
+		REGION region = REGION.EU;
 		URL url = backToLogin(region);
 		Reporter.log("Clicked back to Login: " + url, true);
 		assertThat(url).hasHost(regionDomain(region));

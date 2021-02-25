@@ -7,6 +7,7 @@ import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Reporter;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.wdm.config.Architecture;
@@ -31,13 +32,16 @@ public class Config {
 			case CHROME:
 				setConfigChrome(language);
 				break;
+			case FIREFOX:
+				// TBD
+				break;
 			default:
 				driver = (WebDriver) Class.forName(type.browserClass()).getConstructor().newInstance();
 				wdm = WebDriverManager.getInstance(type);
 			}
-			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		} catch (Exception e) {
-			e.printStackTrace();
+			Reporter.log("" + e.getStackTrace(), true);
 		}
 
 	}

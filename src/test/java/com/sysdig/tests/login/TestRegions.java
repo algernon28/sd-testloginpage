@@ -12,7 +12,7 @@ import java.util.Optional;
 
 import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -27,11 +27,12 @@ public class TestRegions extends BaseTest {
 	@Parameters({ "lang", "country", "browser" })
 	public TestRegions(String lang, String country, String browser) {
 		super(Optional.ofNullable(lang), Optional.ofNullable(country), browser);
-		loginPage = new LoginPage(config);
 	}
 
-	@BeforeTest
-	public void beforeTest() {
+	
+	@BeforeClass
+	public void beforeClass() {
+		loginPage = new LoginPage(config);
 		loginPage.navigate();
 		WebElement logo = loginPage.getLogo();
 		waitUntilVisible(logo);
