@@ -1,4 +1,4 @@
-package config;
+package com.sysdig.tests.config;
 
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;

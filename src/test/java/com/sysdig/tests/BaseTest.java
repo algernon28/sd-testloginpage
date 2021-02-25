@@ -17,7 +17,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 
-import config.Config;
+import com.sysdig.tests.config.Config;
+
 import io.github.bonigarcia.wdm.config.Architecture;
 import io.github.bonigarcia.wdm.config.DriverManagerType;
 

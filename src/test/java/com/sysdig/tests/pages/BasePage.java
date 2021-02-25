@@ -1,14 +1,14 @@
-package pages;
+package com.sysdig.tests.pages;
 
-import static pages.LoginConstants.regionDomain;
+import static com.sysdig.tests.pages.LoginConstants.regionDomain;
 
 import java.net.URL;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-import config.Config;
-import pages.LoginConstants.REGION;
+import com.sysdig.tests.config.Config;
+import com.sysdig.tests.pages.LoginConstants.REGION;
 
 public abstract class BasePage {
 

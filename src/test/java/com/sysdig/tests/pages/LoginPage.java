@@ -1,6 +1,6 @@
-package pages;
+package com.sysdig.tests.pages;
 
-import static pages.LoginConstants.DEFAULT_REGION;
+import static com.sysdig.tests.pages.LoginConstants.DEFAULT_REGION;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -10,9 +10,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import config.Config;
-import pages.LoginConstants.AUTH;
-import pages.LoginConstants.REGION;
+import com.sysdig.tests.config.Config;
+import com.sysdig.tests.pages.LoginConstants.AUTH;
+import com.sysdig.tests.pages.LoginConstants.REGION;
 public class LoginPage extends BasePage{
 	public static final String PATH = "/#/login";
 	public static final String PATH_FREETRIAL = "/company/free-trial";

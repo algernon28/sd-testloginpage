@@ -1,9 +1,9 @@
 package com.sysdig.tests.login;
 
+import static com.sysdig.tests.pages.LoginConstants.FIELD_REQUIRED;
+import static com.sysdig.tests.pages.LoginConstants.MISSING_AT_SIGN;
+import static com.sysdig.tests.pages.LoginConstants.MISSING_DOMAIN;
 import static org.assertj.core.api.Assertions.assertThat;
-import static pages.LoginConstants.FIELD_REQUIRED;
-import static pages.LoginConstants.MISSING_AT_SIGN;
-import static pages.LoginConstants.MISSING_DOMAIN;
 
 import java.util.Optional;
 
@@ -15,8 +15,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.sysdig.tests.BaseTest;
-
-import pages.LoginPage;
+import com.sysdig.tests.pages.LoginPage;
 
 public class TestCredentials extends BaseTest {
 

@@ -1,8 +1,8 @@
 package com.sysdig.tests.login;
 
+import static com.sysdig.tests.pages.LoginConstants.DEFAULT_REGION;
+import static com.sysdig.tests.pages.LoginConstants.regionDomain;
 import static org.assertj.core.api.Assertions.assertThat;
-import static pages.LoginConstants.DEFAULT_REGION;
-import static pages.LoginConstants.regionDomain;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -15,10 +15,9 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.sysdig.tests.BaseTest;
-
-import pages.LoginConstants.REGION;
-import pages.LoginPage;
-import pages.RetrievePasswordPage;
+import com.sysdig.tests.pages.LoginPage;
+import com.sysdig.tests.pages.RetrievePasswordPage;
+import com.sysdig.tests.pages.LoginConstants.REGION;
 
 public class TestRetrievePassword extends BaseTest {
 	private LoginPage loginPage;

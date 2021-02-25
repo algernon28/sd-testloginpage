@@ -1,12 +1,12 @@
-package pages;
+package com.sysdig.tests.pages;
 
-import static pages.LoginConstants.DEFAULT_REGION;
+import static com.sysdig.tests.pages.LoginConstants.DEFAULT_REGION;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import config.Config;
-import pages.LoginConstants.REGION;
+import com.sysdig.tests.config.Config;
+import com.sysdig.tests.pages.LoginConstants.REGION;
 
 public class RetrievePasswordPage extends BasePage {
 	public static final String PATH = "/#/forgotPassword";

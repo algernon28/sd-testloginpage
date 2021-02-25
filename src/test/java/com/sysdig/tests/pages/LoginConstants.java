@@ -1,4 +1,4 @@
-package pages;
+package com.sysdig.tests.pages;
 
 import java.util.EnumMap;
 import java.util.Map;
